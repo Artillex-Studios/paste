@@ -83,7 +83,7 @@ export default function EditorControls({
     }
 
     resetFunction.current();
-    setLanguage('plain');
+    setLanguage('log');
     history.replace({
       pathname: '/',
       hash: '',
@@ -98,9 +98,9 @@ export default function EditorControls({
   return (
     <Header>
       <Section>
-        <Button onClick={reset}>[new]</Button>
+        <Button onClick={reset}>[create new paste]</Button>
         <Button onClick={save}>
-          {recentlySaved ? '[link copied!]' : saving ? '[saving...]' : '[save]'}
+          {recentlySaved ? '[link copied!]' : saving ? '[saving...]' : '[save current paste]'}
         </Button>
         <MenuButton
           label="language"
@@ -126,7 +126,7 @@ export default function EditorControls({
           target="_blank"
           rel="noreferrer"
         >
-          [about]
+          [credit]
         </Button>
       </Section>
     </Header>

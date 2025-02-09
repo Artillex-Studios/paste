@@ -21,12 +21,13 @@ export async function loadFromBytebin(id: string): Promise<LoadResult> {
   try {
     const resp = await fetch(bytebinUrl + id);
     if (resp.ok) {
-      const content = await resp.text();
+      let content = await resp.text();
+      content = content.replace(/(25[0-5]|(2[0-4]|1\d|[1-9]|)\d\.?\b){4}/gm, '*.*.*.*');
       const type = contentTypeToLanguage(
         resp.headers.get('content-type') as string
       );
 
-      document.title = 'pastes | ' + id;
+      document.title = 'AxPaste | ' + id;
       return { ok: true, content, type };
     } else {
       return { ok: false };
@@ -41,6 +42,7 @@ export async function saveToBytebin(
   language: string
 ): Promise<string | null> {
   try {
+    code = code.replace(/(25[0-5]|(2[0-4]|1\d|[1-9]|)\d\.?\b){4}/gm, '*.*.*.*');
     const compressed = gzip(code);
     const contentType = languageToContentType(language);
 

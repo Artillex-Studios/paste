@@ -25,7 +25,7 @@ export default function Editor({
   contentType,
   pasteId,
 }: EditorProps) {
-  const [language, setLanguage] = useState<string>('plain');
+  const [language, setLanguage] = useState<string>('log');
   const [readOnly, setReadOnly] = useState<boolean>(isMobile && !!pasteId);
   const resetFunction = useRef<ResetFunction>(null);
 
